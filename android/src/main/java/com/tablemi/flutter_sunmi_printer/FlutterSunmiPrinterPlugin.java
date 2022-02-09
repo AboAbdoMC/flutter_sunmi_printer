@@ -25,6 +25,7 @@ public class FlutterSunmiPrinterPlugin implements FlutterPlugin, MethodCallHandl
   private String PRINT_TEXT = "printText";
   private String PRINT_ROW = "printRow";
   private String PRINT_IMAGE = "printImage";
+  private String SEND_RAW_DATA = "sendRawData";
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -89,6 +90,11 @@ public class FlutterSunmiPrinterPlugin implements FlutterPlugin, MethodCallHandl
       int n = call.argument("n");
       flutterSunmiPrinterModule.emptyLines(n);
       result.success(null);
+    } else if (call.method.equals(SEND_RAW_DATA)) {
+      byte[] rawData = call.argument("rawData");
+      flutterSunmiPrinterModule.sendRawData(rawData);
+      result.success(null);
+    }
     } else if (call.method.equals(PRINT_ROW)) {
       String cols = call.argument("cols");
       boolean bold = call.argument("bold");

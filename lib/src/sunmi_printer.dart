@@ -8,6 +8,7 @@
 
 import 'dart:async';
 import 'dart:convert';
+import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:flutter_sunmi_printer/src/enums.dart';
 import 'sunmi_col.dart';
@@ -26,6 +27,7 @@ class SunmiPrinter {
   static const String PRINT_TEXT = "printText";
   static const String PRINT_ROW = "printRow";
   static const String PRINT_IMAGE = "printImage";
+  static const String SEND_RAW_DATA = "sendRawData";
 
   static const MethodChannel _channel =
       const MethodChannel('flutter_sunmi_printer');
@@ -67,6 +69,10 @@ class SunmiPrinter {
     if (n > 0) {
       await _channel.invokeMethod(EMPTY_LINES, {"n": n});
     }
+  }
+
+  static Future<void> sendRawData(Uint8List rawData) async {
+    await _channel.invokeMethod(SEND_RAW_DATA, {"rawData": rawData});
   }
 
   /// Print horizontal full width separator

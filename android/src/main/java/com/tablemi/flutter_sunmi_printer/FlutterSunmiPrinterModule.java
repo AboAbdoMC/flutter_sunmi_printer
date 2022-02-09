@@ -62,6 +62,10 @@ public class FlutterSunmiPrinterModule {
     AidlUtil.getInstance().setFontSize(size);
   }
 
+  public void sendRawData(byte[] rawData) {
+    AidlUtil.getInstance().sendRawData(rawData);
+  }
+
   public void text(String text, int align, boolean bold, boolean underline, int size, int linesAfter) {
     // Set styles
     if (bold) {
