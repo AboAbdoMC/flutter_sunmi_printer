@@ -94,7 +94,6 @@ public class FlutterSunmiPrinterPlugin implements FlutterPlugin, MethodCallHandl
       byte[] rawData = call.argument("rawData");
       flutterSunmiPrinterModule.sendRawData(rawData);
       result.success(null);
-    }
     } else if (call.method.equals(PRINT_ROW)) {
       String cols = call.argument("cols");
       boolean bold = call.argument("bold");
